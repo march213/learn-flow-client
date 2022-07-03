@@ -72,7 +72,7 @@ function App() {
     try {
       IDs = await fcl.query({
         cadence: `${getIDs}`,
-        args: (arg, t) => [arg(user.addr, types.Address)],
+        args: (arg: any, t: any) => [arg(user.addr, types.Address)],
       });
     } catch (err) {
       console.log('No NFTs Owned');
@@ -83,7 +83,7 @@ function App() {
       for (let i = 0; i < IDs.length; i++) {
         const result = await fcl.query({
           cadence: `${getMetadata}`,
-          args: (arg, t) => [arg(user.addr, types.Address), arg(IDs[i].toString(), types.UInt64)],
+          args: (arg: any, t: any) => [arg(user.addr, types.Address), arg(IDs[i].toString(), types.UInt64)],
         });
         // If the source is an IPFS link, remove the "ipfs://" prefix
         if (result['thumbnail'].startsWith('ipfs://')) {
